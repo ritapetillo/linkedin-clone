@@ -249,14 +249,22 @@ function Post({
 
               {toggleComment ? (
                 <>
-                  <Comment postId={post._id} image={loggedInUser.image} />
+                  <Comment
+                    postId={post._id}
+                    image={loggedInUser.image}
+                    fetchPosts={fetchAllPosts}
+                  />
                 </>
               ) : (
                 <></>
               )}
               {showComments ? (
                 comments.comment.map((comment) => (
-                  <DisplayComment text={comment.text} image={comment} />
+                  <DisplayComment
+                    text={comment.text}
+                    image={comment}
+                    fetchPosts={fetchAllPosts}
+                  />
                 ))
               ) : (
                 <></>
@@ -265,7 +273,7 @@ function Post({
           )}
           {displayComment ? (
             <div className="d-block">
-              People who liked this post:  {"  "}
+              People who liked this post: {"  "}
               {username}
               {post.likes
                 .slice(0, 2)
@@ -276,6 +284,8 @@ function Post({
           ) : (
             ""
           )}
+
+        
         </Row>
       </Row>
     </>
