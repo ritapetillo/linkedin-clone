@@ -23,9 +23,13 @@ class Comment extends React.Component {
             postId: this.props.postId
         }
         await postNewComment(comment);
-        await this.setState({text: '', disabled: 'disabled'})
+        this.setState({text: '', disabled: 'disabled'}, () => {
+          this.props.fetchComments(this.props.postId)
+        })
       }
     }
+
+
 
     postId = this.props.postId;
 

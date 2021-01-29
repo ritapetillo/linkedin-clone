@@ -46,6 +46,7 @@ function Post({ post, currentUser, toggleModal, userId, fetchAllPosts }) {
   const fetchAllComments = async(postId) => {
     const comments = await getAllComments(postId);
     setComment(comments)
+    
   }
 
   const fetchLoggedInUser = async() => {
@@ -179,7 +180,7 @@ function Post({ post, currentUser, toggleModal, userId, fetchAllPosts }) {
           }
           {toggleComment ? 
             <>
-            <Comment postId={post._id} image={loggedInUser.image} fetchPosts={fetchAllPosts}/>
+            <Comment postId={post._id} image={loggedInUser.image} fetchPosts={fetchAllPosts} fetchComments={fetchAllComments}/>
             </>
             : 
             <></>
@@ -187,7 +188,7 @@ function Post({ post, currentUser, toggleModal, userId, fetchAllPosts }) {
           {
             showComments ? 
               comments.comment.map(comment => 
-                  <DisplayComment text={comment.text} image={comment} fetchPosts={fetchAllPosts}/>
+                  <DisplayComment text={comment.text} image={comment} fetchPosts={fetchAllPosts} fetchComments={fetchAllComments}/>
                 ) : <></>
           }
         </Row>
