@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import "../Styles/NewPostButton.css";
 import { Link } from "react-router-dom";
 
-function NewPostButton({scrollUp}) {
+function NewPostButton({ scrollUp, fetchAllPosts }) {
   const controls = useRef();
   const [fixedPosition, setFixedPosition] = useState(false);
   useEffect(() => {
@@ -18,7 +18,14 @@ function NewPostButton({scrollUp}) {
     };
   }, []);
   return (
-    <Contain fixed={fixedPosition} ref={controls} onClick={()=>scrollUp()}>
+    <Contain
+      fixed={fixedPosition}
+      ref={controls}
+      onClick={() => {
+        scrollUp();
+        fetchAllPosts();
+      }}
+    >
       <Link to="/feeds">
         <Button variant="primary" className="rounded-pill NewPostButton">
           New Posts ↑

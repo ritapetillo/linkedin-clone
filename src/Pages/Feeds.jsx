@@ -96,7 +96,7 @@ const Feeds = (props, { currentUser }) => {
             user={user}
             users={allUsers}
           />
-          <NewPostButton scrollUp={handleMoveTop} />
+          <NewPostButton scrollUp={handleMoveTop} fetchAllPosts={fetchAllPosts}/>
           {/* {loading ? (
             <>
               <Container>

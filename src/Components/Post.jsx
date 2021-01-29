@@ -158,17 +158,19 @@ function Post({
           </div>
 
           <div className="post__follow d-flex align-items-center px-2 blue-primary-color font-weight-bold">
-            <>
-              {toggleFollow ? (
-                <span>
-                  <RemoveIcon onClick={() => handleFollow()} /> Unfollow
-                </span>
-              ) : (
-                <span>
-                  <AddIcon onClick={() => handleFollow()} /> Follow
-                </span>
-              )}
-            </>
+            {post.userId._id !== currentUser._id && (
+              <>
+                {toggleFollow ? (
+                  <span>
+                    <RemoveIcon onClick={() => handleFollow()} /> Unfollow
+                  </span>
+                ) : (
+                  <span>
+                    <AddIcon onClick={() => handleFollow()} /> Follow
+                  </span>
+                )}
+              </>
+            )}
           </div>
         </Row>
         <Row className="d-flex flex-column align-items-start post__text mt-4">
@@ -182,6 +184,7 @@ function Post({
             }
           })()}
         </Row>
+
         <Row className="d-flex align-items-center post__comments ">
           {toggleLike ? (
             <>
@@ -231,6 +234,7 @@ function Post({
               </span>
             </>
           )}
+
           <span className="ml-3">
             <CommentIcon onClick={() => handleComment()} /> Comment
           </span>
@@ -284,8 +288,6 @@ function Post({
           ) : (
             ""
           )}
-
-        
         </Row>
       </Row>
     </>
