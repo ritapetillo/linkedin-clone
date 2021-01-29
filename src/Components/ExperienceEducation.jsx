@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card, Row, Image, Col, Container } from "react-bootstrap";
 import {
@@ -15,6 +16,9 @@ import "../Styles/ExperienceEducation.css";
 import moment from "moment";
 import { withRouter } from "react-router-dom";
 
+
+
+
 function ExperienceEducation({
   toggleExpModal,
   toggleSkillModal,
@@ -23,7 +27,13 @@ function ExperienceEducation({
   education,
   skills,
   match,
+  user
+
 }) {
+
+  const { REACT_APP_URI_DEV } = process.env;
+
+  
   console.log("education", education);
   console.log("experiences", experiences);
   console.log("skills", skills);
@@ -88,14 +98,17 @@ function ExperienceEducation({
           </List>
         </Card.Body>
         <Divider light />
+        {match.params.user !== "me" && (
         <ListItem
           button="primary"
           component="a"
           href="#"
           className="show-more-list-link justify-content-start"
         >
-          Show 3 more expereinces ▾
-        </ListItem>
+                         <a href={`${REACT_APP_URI_DEV}/api/users/experience/download/csv`}>Download {user.name} {user.lastName}'s Expereince<CreateIcon/></a>
+
+          {/* Show 3 more expereinces ▾ */}
+        </ListItem>)}
         <Divider light />
 
         <Card.Body>
@@ -160,14 +173,18 @@ function ExperienceEducation({
               </>
             ))}
         </Card.Body>
+        {match.params.user !== "me" && (
         <ListItem
           button="primary"
           component="a"
           href="#"
           className="show-more-list-link justify-content-start"
         >
-          Show 3 more education ▾
+                                   <a href={`${REACT_APP_URI_DEV}/api/users/education/download/csv`}>Download {user.name} {user.lastName}'s Education<CreateIcon/></a>
+
+          {/* Show 3 more education ▾ */}
         </ListItem>
+        )}
         <Divider light />
 
         <Card.Body>
@@ -283,14 +300,14 @@ function ExperienceEducation({
             </ListItem>
           </List> */}
         </Card.Body>
-        <ListItem
+        {/* <ListItem
           button="primary"
           component="a"
           href="#"
           className="show-more-list-link justify-content-start"
         >
           Show 3 more skills ▾
-        </ListItem>
+        </ListItem> */}
       </Card>
     </div>
   );

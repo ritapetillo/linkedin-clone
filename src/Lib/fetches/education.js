@@ -57,3 +57,13 @@ export const uploadPicture = async (id, picture) => {
     console.log(err);
   }
 };
+
+export const eduCSV = async () =>{
+  try {
+    const res = await axios.get(`${REACT_APP_URI_DEV}/api/users/education/download/csv`);
+    console.log(res);
+    if (res.status == 200) return await res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -4,6 +4,7 @@ import "../Styles/ProfileDetailsCard.css";
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ProfileDetailsButtons from "./ProfileDetailsButtons";
+import CreateIcon from "@material-ui/icons/Create";
 import DottedBox from "./DottedBox";
 import { Link, withRouter } from "react-router-dom";
 import AppContext from "../Context/app-context";
@@ -18,6 +19,7 @@ function ProfileDetailsCard({
   match,
 }) {
   const { appState, updateCurrentUser } = useContext(AppContext);
+  const { REACT_APP_URI_DEV } = process.env;
 
   const [image, setImage] = useState("");
 
@@ -71,17 +73,17 @@ function ProfileDetailsCard({
           </span>
           <div>
           <span className="blue-primary-color font-weight-bold">
-      <a href="https://www.sejda.com/html-to-pdf?save-link">Save to PDF</a>
       </span>
           </div>
         </div>
-        {match.params.user == "me" && (
+        {match.params.user == "me" ? (
           <DottedBox
             textBold="Show recruiters you're open to work"
             text="- you control who sees this"
             linkText="Get Started"
             currentUserPage={currentUserPage}
           />
+        ) :  ( <><a href={`${REACT_APP_URI_DEV}/api/users/user/${user._id}/cv`}>Print {user.name} {user.lastName}'s complete CV<CreateIcon/></a></>
         )}
       </div>
     </Row>
