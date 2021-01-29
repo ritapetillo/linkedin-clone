@@ -46,17 +46,23 @@ export const deleteExp = async (id) => {
 export const uploadPicture = async (id, picture) => {
   const pictureFORM = new FormData();
   pictureFORM.append("image", picture);
-  console.log("id", id);
-  console.log("picture", picture)
-
-
-  try {
+try {
     const res = await authAxios.post(
       `${REACT_APP_URI_DEV}/api/users/experiences/${id}/upload`,
       pictureFORM
     );
     console.log(res);
     if (res.status == 201) return await res.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const expCSV = async () =>{
+  try {
+    const res = await axios.get(`${REACT_APP_URI_DEV}/api/users/experiences/download/csv`);
+    console.log(res);
+    if (res.status == 200) return await res.data;
   } catch (err) {
     console.log(err);
   }

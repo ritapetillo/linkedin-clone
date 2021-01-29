@@ -195,6 +195,7 @@ const Profile = ({ match }) => {
             handleChangeImage={handleChangeImage}
             toggleProfileModal={toggleProfileModal}
             setUpUser={setState}
+            
           />
 
           <AboutCard bio={user?.bio} />
@@ -207,6 +208,8 @@ const Profile = ({ match }) => {
             experiences={user?.experiences}
             education={user?.education}
             skills={user?.skills}
+            user={user}
+
           />
           <ELearning />
         </Col>
